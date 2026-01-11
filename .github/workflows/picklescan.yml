@@ -23,4 +23,4 @@ jobs:
         run: ls -la models
 
       - name: Scan models directory with picklescan
-        run: picklesan --path models
+        run: picklescan --path models
