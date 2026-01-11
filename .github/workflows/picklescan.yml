@@ -16,4 +16,4 @@ jobs:
         with:
           python-version: '3.11'
       - name: Install Picklescan
-        run: python -m install picklescan
+        run: python -m pip install picklescan
