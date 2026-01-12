@@ -24,3 +24,7 @@ jobs:
 
       - name: Scan models directory with picklescan
         run: picklescan --path models
+
+      - name: Demo (optional) Fail CI when picklescan detects malware
+        if: ${{ hashfiles( 'models/DEMO_MALWARE' ) != '' }}
+        run: picklescan --huggingface ykilcher/totally-harmless-model
