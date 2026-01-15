@@ -20,11 +20,7 @@ jobs:
         run: python -m pip install picklescan
 
       - name: List models directory contents
-        run: |
-          echo "Repository root:"
-          pwd
-          echo "Models drectory"
-          ls -la models
+        run: ls -la models
 
       - name: Scan models directory with picklescan
         run: picklescan --path models
