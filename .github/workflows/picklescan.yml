@@ -1,0 +1,30 @@
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - models/**
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.11'
+
+      - name: Install Picklescan
+        run: python -m pip install picklescan
+
+      - name: List models directory contents
+        run: ls -la models
+
+      - name: Scan models directory with picklescan
+        run: picklescan --path models
+
+      - name: Demo (optional) Fail CI when picklescan detects malware
+        if: ${{ hashfiles( 'models/DEMO_MALWARE' ) != '' }}
+        run: picklescan --huggingface ykilcher/totally-harmless-model
